@@ -4,7 +4,8 @@
   "description": "Coding challenge",
   "scripts": {
     "start": "node scripts/start",
-    "test": "mocha './app/**/**.test.js' --compilers js:babel-core/register"
+    "test": "jest --coverage",
+    "test:watch": "jest --watch"
   },
   "devDependencies": {
     "assert": "^1.4.1",
@@ -22,6 +23,8 @@
     "babel-runtime": "^6.3.19",
     "css-loader": "^0.25.0",
     "css-modules-require-hook": "^4.0.5",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "4.4.x",
     "eslint-config-google": "0.9.x",
     "eslint-config-prettier": "2.3.x",
@@ -29,9 +32,11 @@
     "eslint-plugin-prettier": "2.1.x",
     "eslint-plugin-react": "7.x.x",
     "extract-text-webpack-plugin": "^1.0.1",
-    "mocha": "^5.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.2.0",
     "postcss-loader": "^1.2.1",
     "prettier": "^1.5.3",
+    "react-test-renderer": "^16.4.1",
     "shelljs": "^0.7.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
