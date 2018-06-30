@@ -1,5 +1,5 @@
-import * as schemeActions from './scheme';
-import * as types from '../constants';
+import * as schemeActions from '../scheme';
+import * as types from '../../constants';
 import assert from 'assert';
 
 describe('scheme actions', () => {

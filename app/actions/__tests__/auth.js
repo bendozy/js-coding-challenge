@@ -1,5 +1,5 @@
-import * as authActions from './auth';
-import * as types from '../constants';
+import * as authActions from '../auth';
+import * as types from '../../constants';
 import assert from 'assert';
 
 describe('auth actions', () => {

@@ -1,5 +1,5 @@
-import reducer from './auth';
-import * as types from '../constants';
+import reducer from '../auth';
+import * as types from '../../constants';
 import assert from 'assert';
 
 describe('auth reducer', () => {

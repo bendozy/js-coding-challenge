@@ -1,5 +1,5 @@
-import reducer from './scheme';
-import * as types from '../constants';
+import reducer from '../scheme';
+import * as types from '../../constants';
 import assert from 'assert';
 
 describe('scheme reducer', () => {
