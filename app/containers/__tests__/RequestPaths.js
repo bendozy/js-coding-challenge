@@ -1,7 +1,7 @@
 import React from 'react';
 import { paths } from '../../tests/swagger-sample';
 import RequestPaths from '../RequestPaths';
-import RequestPath from '../../components/RequestPath';
+import RequestPath from '../RequestPath';
 
 describe('<RequestPaths />', () => {
   it('renders a <h3> tag', () => {

@@ -4,5 +4,8 @@
   "globals": {
     "Offline": true,
     "ga": true
+  },
+  "rules": {
+    "prettier/prettier": "error"
   }
 }

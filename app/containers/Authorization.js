@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import * as authActions from '../actions/auth';
 
-import style from './Authorization.css';
+import style from './css/Authorization.css';
 
 class Authorization extends React.Component {
   state = {

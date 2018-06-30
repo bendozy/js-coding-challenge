@@ -1,6 +1,6 @@
 import React from 'react';
 
-import style from './RequestMethod.css';
+import style from './css/RequestMethod.css';
 
 class RequestMethod extends React.Component {
   state = {

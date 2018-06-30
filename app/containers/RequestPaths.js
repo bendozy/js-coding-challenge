@@ -1,7 +1,7 @@
 import React from 'react';
-import RequestPath from '../components/RequestPath';
+import PropTypes from 'prop-types';
 
-import style from './RequestPaths.css';
+import RequestPath from './RequestPath';
 
 const RequestPaths = ({ paths }) => {
   const requestPaths = Object.keys(paths).map(pathsKey => (
@@ -9,11 +9,15 @@ const RequestPaths = ({ paths }) => {
   ));
 
   return (
-    <div className={style.RequestPaths}>
+    <div>
       <h3>Request Paths</h3>
       {requestPaths}
     </div>
   );
+};
+
+RequestPaths.propTypes = {
+  paths: PropTypes.object.isRequired,
 };
 
 export default RequestPaths;

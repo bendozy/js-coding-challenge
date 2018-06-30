@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import Schemes from '../components/Schemes';
-import Authorization from '../components/Authorization';
-import RequestPaths from '../containers/RequestPaths';
+import Schemes from './Schemes';
+import Authorization from './Authorization';
+import RequestPaths from './RequestPaths';
 
-import style from './App.css';
+import style from './css/App.css';
 
 export const App = ({ swagger }) => (
   <div className={style.App}>

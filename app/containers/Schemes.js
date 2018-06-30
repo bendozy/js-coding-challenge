@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import * as schemeActions from '../actions/scheme';
 
-import style from './Schemes.css';
+import style from './css/Schemes.css';
 
 export class Schemes extends React.Component {
   componentDidMount() {

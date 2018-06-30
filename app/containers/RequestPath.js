@@ -1,7 +1,7 @@
 import React from 'react';
 import RequestMethod from './RequestMethod';
 
-import style from './RequestPath.css';
+import style from './css/RequestPath.css';
 
 const RequestPath = ({ path, pathName }) => {
   const requestMethods = Object.keys(path)

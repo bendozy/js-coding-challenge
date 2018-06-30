@@ -1,9 +1,9 @@
 import React from 'react';
 import swagger from '../../tests/swagger-sample';
 import { App, mapStateToProps } from '../App';
-import Schemes from '../../components/Schemes';
+import Schemes from '../Schemes';
 import RequestPaths from '../RequestPaths';
-import Authorization from '../../components/Authorization';
+import Authorization from '../Authorization';
 
 const setAuthKey = jest.fn();
 
