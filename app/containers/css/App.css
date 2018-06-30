@@ -6,6 +6,16 @@
   color: #89bf04
 }
 
+.Group {
+  display: flex;
+  align-items: center;
+}
+
+.GroupLeft {
+  display: flex;
+  flex: 1;
+}
+
 .SwaggerDebug {
   margin: 10px;
   max-height: 400px;

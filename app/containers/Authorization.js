@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
+import Modal from './Modal';
 import * as authActions from '../actions/auth';
 
 import style from './css/Authorization.css';
@@ -20,6 +21,10 @@ class Authorization extends React.Component {
     this.setState(({ open }) => ({ open: !open }));
   };
 
+  close = () => {
+    this.setState({ open: false });
+  };
+
   setKey = key => {
     this.props.setAuthKey(key);
   };
@@ -34,18 +39,19 @@ class Authorization extends React.Component {
 
     return (
       <div className={style.Auth}>
-        {!authKey && <button onClick={this.toggle}>Set Auth</button>}
-        {authKey && <button onClick={this.removeKey}>Remove Auth</button>}
-        {open && (
-          <div className={style.AuthModal}>
-            <div className={style.AuthModalContent}>
-              <span className={style.Close} onClick={this.toggle}>
-                &times;
-              </span>
-              <h4>Set API key</h4>
-            </div>
-          </div>
+        {!authKey && (
+          <button className={style.AuthButton} onClick={this.toggle}>
+            Set Auth
+          </button>
         )}
+        {authKey && (
+          <button className={style.AuthButton} onClick={this.removeKey}>
+            Remove Auth
+          </button>
+        )}
+        <Modal title="Authorization" close={this.close} open={open}>
+          <h4>Authorization goes here</h4>
+        </Modal>
       </div>
     );
   }

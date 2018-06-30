@@ -13,8 +13,14 @@ export const App = ({ swagger }) => (
     <h1 className={style.AppTitle}>{`${swagger.info.title} ${swagger.info.version}`}</h1>
     <div>{swagger.info.description}</div>
     <div>Base URL: {swagger.host}</div>
-    <Schemes schemes={swagger.schemes} />
-    <Authorization securityDefinitions={swagger.securityDefinitions} />
+    <div className={style.Group}>
+      <span className={style.GroupLeft}>
+        <Schemes schemes={swagger.schemes} />
+      </span>
+      <span className={style.GroupRight}>
+        <Authorization securityDefinitions={swagger.securityDefinitions} />
+      </span>
+    </div>
     <RequestPaths paths={swagger.paths} />
   </div>
 );
