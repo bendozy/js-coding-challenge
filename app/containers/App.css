@@ -1,4 +1,9 @@
 .App {
+  margin: 10px;
+}
+
+.AppTitle {
+  color: #89bf04
 }
 
 .SwaggerDebug {

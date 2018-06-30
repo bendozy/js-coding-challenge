@@ -1,0 +1,121 @@
+.Content {
+  padding: 5px;
+  border-top: 1px solid;
+}
+
+.Content-get {
+  border-top-color: rgba(97,175,254,1);
+}
+
+.Content-post {
+  border-top-color: rgba(73,204,144,1);
+}
+
+.Content-patch {
+  border-top-color: rgba(80,227,194,1);
+}
+
+.Content-put {
+  border-top-color: rgba(252,161,48,1);
+}
+
+.Content-delete {
+  border-top-color: rgba(249,62,62,1);
+}
+
+.Title {
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.TitleSummary {
+  font-weight: 600;
+  font-size: 16px;
+  color: #3b4151;
+  display: flex;
+  flex: 0 3 auto;
+  word-break: break-all;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.RequestMethod {
+  border: 1px solid;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.RequestMethod-get {
+  border-color: rgba(97,175,254,1);
+  background-color: rgba(97,175,254,.1);
+}
+
+.RequestMethod-post {
+  border-color: rgba(73,204,144,1);
+  background-color: rgba(73,204,144,.1);
+}
+
+.RequestMethod-put {
+  border-color: rgba(252,161,48,1);
+  background-color: rgba(252,161,48,.1);
+}
+
+.RequestMethod-patch {
+  border-color: rgba(80,227,194,1);
+  background-color: rgba(80,227,194,.1);
+}
+
+.RequestMethod-delete {
+  border-color: rgba(249,62,62,1);
+  background-color: rgba(249,62,62,.1);
+}
+
+.Table {
+  width: 100%;
+  padding-left: 5%;
+  padding-right: 5%;
+  border-collapse: collapse;
+  color: #3b4151;
+}
+
+.Table th {
+  text-align: left;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.Table thead {
+  border-bottom: 2px solid;
+  border-bottom: 1px solid #FFFFFF;
+}
+
+.SectionHeader {
+  display: flex;
+  align-items: center;
+  padding: 8px 20px;
+  background: hsla(0,0%,100%,.8);
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+}
+
+.TabHeader {
+  display: flex;
+  flex: 1;
+}
+
+.Tryout button {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 5px 23px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.1);
+  color: #3b4151;
+  cursor: pointer;
+}
+
+.TryoutCancel {
+  box-shadow: 0 1px 2px rgba(253, 54, 54, 0);
+  color: #fc3434fd;
+}
