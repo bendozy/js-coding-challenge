@@ -1,0 +1,9 @@
+.CodeFormatter {
+  background-color: #3b4151;
+  color: #FFFFFF;
+  padding: 10px;
+  border-radius: 2px;
+  overflow-y: auto;
+  max-height: 200px;
+  min-height: 4em;
+}

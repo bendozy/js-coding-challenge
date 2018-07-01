@@ -27,7 +27,7 @@ describe('<App />', () => {
   });
 
   it('renders a <Authorization /> component', () => {
-    const wrapper = shallow(<App setAuthKey={setAuthKey} swagger={swagger} />);
+    const wrapper = mount(<App setAuthKey={setAuthKey} swagger={swagger} />);
 
     expect(wrapper.find(Authorization).length).toBe(1);
   });

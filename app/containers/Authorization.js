@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import Modal from './Modal';
+import Button from './Button';
 import * as authActions from '../actions/auth';
 
 import style from './css/Authorization.css';
@@ -13,16 +14,12 @@ class Authorization extends React.Component {
     apiKey: '',
   };
 
-  componentDidMount() {
-    this.props.setAuthKey('123');
-  }
-
   toggle = () => {
     this.setState(({ open }) => ({ open: !open }));
   };
 
   close = () => {
-    this.setState({ open: false });
+    this.setState({ open: false }, () => this.props.setAuthKey('123'));
   };
 
   setKey = key => {
@@ -40,14 +37,14 @@ class Authorization extends React.Component {
     return (
       <div className={style.Auth}>
         {!authKey && (
-          <button className={style.AuthButton} onClick={this.toggle}>
+          <Button className={style.AuthButton} onClick={this.toggle}>
             Set Auth
-          </button>
+          </Button>
         )}
         {authKey && (
-          <button className={style.AuthButton} onClick={this.removeKey}>
+          <Button className={style.AuthButton} onClick={this.removeKey}>
             Remove Auth
-          </button>
+          </Button>
         )}
         <Modal title="Authorization" close={this.close} open={open}>
           <h4>Authorization goes here</h4>

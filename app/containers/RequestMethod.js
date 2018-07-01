@@ -1,5 +1,9 @@
 import React from 'react';
 
+import Modal from './Modal';
+import Button from './Button';
+import RequestForm from './RequestForm';
+
 import style from './css/RequestMethod.css';
 
 class RequestMethod extends React.Component {
@@ -19,34 +23,28 @@ class RequestMethod extends React.Component {
   render() {
     const { methodName, pathName, methodDetails, params } = this.props;
     const { open, editingMode } = this.state;
+    let parameters = [];
     let parameterBody = [];
     const responseBody = [];
 
     if (params) {
-      parameterBody.push(
-        params.map(param => (
-          <tr key={param.name}>
-            <td>{param.name}</td>
-            <td>{param.type}</td>
-            <td>{param.in}</td>
-            <td>{param.description}</td>
-          </tr>
-        ))
-      );
+      parameters = parameters.concat(params);
     }
 
     if (methodDetails.parameters) {
-      parameterBody.push(
-        methodDetails.parameters.map(param => (
-          <tr key={param.name}>
-            <td>{param.name}</td>
-            <td>{param.type}</td>
-            <td>{param.in}</td>
-            <td>{param.description}</td>
-          </tr>
-        ))
-      );
+      parameters = parameters.concat(methodDetails.parameters);
     }
+
+    parameterBody = parameters.map(param => (
+      <tr key={param.name}>
+        <td>{param.name}</td>
+        <td>
+          {param.type} {param.required ? '*' : ''}
+        </td>
+        <td>{param.in}</td>
+        <td>{param.description}</td>
+      </tr>
+    ));
 
     if (methodDetails.responses) {
       responseBody.push(
@@ -71,16 +69,9 @@ class RequestMethod extends React.Component {
               <div className={style.TabHeader}>
                 <h4>Parameters</h4>
               </div>
-              {!editingMode && (
-                <div className={style.Tryout}>
-                  <button onClick={this.toggleEditMode}>Try Out</button>
-                </div>
-              )}
-              {editingMode && (
-                <div className={[style.Tryout, style.TryoutCancel].join(' ')}>
-                  <button onClick={this.toggleEditMode}>Cancel</button>
-                </div>
-              )}
+              <div className={style.Tryout}>
+                <Button onClick={this.toggleEditMode}>Try Out</Button>
+              </div>
             </div>
             <div className={[style.Content, style[`Content-${methodName}`]].join(' ')}>
               <table className={style.Table}>
@@ -111,6 +102,9 @@ class RequestMethod extends React.Component {
                 <tbody>{responseBody}</tbody>
               </table>
             </div>
+            <Modal title="Send API Request" close={this.toggleEditMode} open={editingMode}>
+              <RequestForm parameters={parameters} methodName={methodName} pathName={pathName} />
+            </Modal>
           </div>
         )}
       </div>
