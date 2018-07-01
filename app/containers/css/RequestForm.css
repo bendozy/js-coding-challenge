@@ -20,7 +20,9 @@
 }
 
 .FormGroup textarea {
-  width: 60%;
+  width: 100%;
+  resize: none;
+  border-radius: 5px;
 }
 
 .FormSubmit {

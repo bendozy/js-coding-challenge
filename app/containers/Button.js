@@ -22,9 +22,13 @@ const Button = ({ children, onClick, disabled, type, full }) => {
   );
 };
 
+Button.defaultProps = {
+  onClick: () => null,
+};
+
 Button.propTypes = {
   onClick: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.node.isRequired,
   type: PropTypes.string,
   disabled: PropTypes.bool,
   full: PropTypes.bool,

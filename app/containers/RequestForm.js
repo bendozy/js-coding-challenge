@@ -17,9 +17,21 @@ class RequestForm extends React.Component {
     loading: false,
   };
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    const { parameters } = nextProps;
+    const { formData } = prevState;
+
+    const bodyParam = parameters.find(parameter => parameter.name === 'body');
+
+    if (bodyParam && bodyParam.schema && bodyParam.schema.example) {
+      formData.body = JSON.stringify(bodyParam.schema.example, null, 2);
+    }
+
+    return { formData };
+  }
+
   onChange = event => {
     const { formData } = this.state;
-    console.log(event.target, formData[event.target.name]);
 
     formData[event.target.name] = event.target.value;
 
@@ -29,21 +41,55 @@ class RequestForm extends React.Component {
   onSubmit = event => {
     event.preventDefault();
 
-    this.setState({ loading: true, response: 'Sending Request' }, () => this.sendRequest());
+    this.setState({ loading: true, response: 'Sending Request' }, () => this.validateInputs());
+  };
+
+  validateInputs = () => {
+    let isValid = true;
+    const { formData } = this.state;
+    const { parameters } = this.props;
+    const errors = {};
+
+    // parameters.map(pa)
+
+    if (formData.body) {
+      console.log('hasbody');
+
+      try {
+        formData.body = JSON.parse(formData.body);
+        console.log(formData.body);
+      } catch (err) {
+        isValid = false;
+        errors.body = err;
+      }
+    }
+
+    if (isValid) {
+      this.setState({ formData }, () => this.sendRequest());
+    } else {
+      this.setState({ loading: false, response: errors });
+    }
   };
 
   sendRequest = () => {
     const { methodName: method } = this.props;
+    const { formData } = this.state;
 
     // Server does not allow CORS so I am using a proxy
-    axios({
+    const options = {
       method,
       url: `https://cors-anywhere.herokuapp.com/${this.getRequestUrl()}`,
       headers: {
         'Access-Control-Allow-Origin': '*',
         'Content-Type': 'application/json',
       },
-    })
+    };
+
+    if (formData.body) {
+      options.data = formData.body;
+    }
+
+    axios(options)
       .then(response => {
         this.setState({ response: response.data, loading: false });
         // Save Request
@@ -54,7 +100,7 @@ class RequestForm extends React.Component {
   };
 
   getRequestUrl = () => {
-    const { scheme, baseUrl, pathName, parameters, authKey } = this.props;
+    const { scheme, baseUrl, pathName, parameters } = this.props;
     const { formData } = this.state;
     const protocol = scheme ? `${scheme}://` : '';
     let url = pathName;
@@ -91,7 +137,7 @@ class RequestForm extends React.Component {
         return (
           <div key={parameter.name} className={style.FormGroup}>
             <label htmlFor={parameter.name}>{parameter.name}:</label>
-            <textarea rows="4" cols="50" className={style.formElement} required>
+            <textarea rows="10" cols="50" className={style.formElement} required>
               {formData[parameter.name]}
             </textarea>
           </div>

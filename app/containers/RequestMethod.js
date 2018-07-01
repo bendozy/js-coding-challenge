@@ -31,7 +31,7 @@ class RequestMethod extends React.Component {
       parameters = parameters.concat(params);
     }
 
-    if (methodDetails.parameters) {
+    if (methodDetails && methodDetails.parameters) {
       parameters = parameters.concat(methodDetails.parameters);
     }
 
@@ -46,7 +46,7 @@ class RequestMethod extends React.Component {
       </tr>
     ));
 
-    if (methodDetails.responses) {
+    if (methodDetails && methodDetails.responses) {
       responseBody.push(
         Object.keys(methodDetails.responses).map(key => (
           <tr key={key}>
@@ -59,7 +59,7 @@ class RequestMethod extends React.Component {
 
     return (
       <div className={[style.RequestMethod, style[`RequestMethod-${methodName}`]].join(' ')}>
-        <div className={style.Title} onClick={this.toggle}>
+        <div id="MethodTitle" className={style.Title} onClick={this.toggle}>
           {methodName.toUpperCase()}
           <span className={style.TitleSummary}>{pathName}</span> - {methodDetails.summary}
         </div>

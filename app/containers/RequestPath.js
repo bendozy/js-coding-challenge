@@ -6,7 +6,7 @@ import style from './css/RequestPath.css';
 const RequestPath = ({ path, pathName }) => {
   const requestMethods = Object.keys(path)
     .filter(method => {
-      const httpMethods = ['get', 'put', 'post', 'patch', 'delete'];
+      const httpMethods = ['get', 'put', 'post', 'patch', 'delete', 'head', 'options', 'trace'];
       return httpMethods.indexOf(method) !== -1;
     })
     .map(method => (

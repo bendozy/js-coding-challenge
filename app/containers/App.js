@@ -34,11 +34,9 @@ export class App extends React.Component {
   render() {
     const { schema, isParsing, errors } = this.state;
 
-    if (isParsing) return <div>Parsing</div>;
+    if (isParsing) return <div id="AppParsing">Parsing</div>;
 
-    if (errors) return <div>Errors with file</div>;
-
-    console.log(schema);
+    if (errors) return <div id="AppError">Errors with file</div>;
 
     return (
       <div className={style.App}>
