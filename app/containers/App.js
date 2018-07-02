@@ -1,31 +1,70 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import RefParser from 'json-schema-ref-parser';
 import { connect } from 'react-redux';
 
-import style from './App.css';
+import Schemes from './Schemes';
+import Authorization from './Authorization';
+import RequestPaths from './RequestPaths';
 
-class App extends React.Component {
+import style from './css/App.css';
+
+export class App extends React.Component {
+  state = {
+    isParsing: true,
+    schema: {},
+  };
+
+  componentDidMount() {
+    RefParser.dereference(this.props.swagger)
+      .then(schema => {
+        this.setState({
+          isParsing: false,
+          schema,
+        });
+      })
+      .catch(errors => {
+        this.setState({
+          isParsing: false,
+          errors,
+        });
+      });
+  }
+
   render() {
-    const { swagger } = this.props;
+    const { schema, isParsing, errors } = this.state;
+
+    if (isParsing) return <div id="AppParsing">Parsing</div>;
+
+    if (errors) return <div id="AppError">Errors with file</div>;
 
     return (
       <div className={style.App}>
-        <h1>Request Maker</h1>
-
-        <div>CODE ME</div>
-
-        <div>Debug to show access to swagger JSON:</div>
-        <pre className={style.SwaggerDebug}>
-          <code>
-            {JSON.stringify(swagger, null, 4)}
-          </code>
-        </pre>
+        <h1 className={style.AppTitle}>{`${schema.info.title} ${schema.info.version}`}</h1>
+        <div>{schema.info.description}</div>
+        <div>Base URL: {schema.host}</div>
+        <div className={style.Group}>
+          <span className={style.GroupLeft}>
+            <Schemes schemes={schema.schemes} />
+          </span>
+          <span className={style.GroupRight}>
+            <Authorization securityDefinitions={schema.securityDefinitions} />
+          </span>
+        </div>
+        <RequestPaths paths={schema.paths} />
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { swagger: state.swagger };
-}
+export const mapStateToProps = state => ({ swagger: state.swagger });
+
+App.propTypes = {
+  swagger: PropTypes.shape({
+    schemes: PropTypes.array.isRequired,
+    paths: PropTypes.object.isRequired,
+    info: PropTypes.object.isRequired,
+  }),
+};
 
 export default connect(mapStateToProps)(App);

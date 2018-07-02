@@ -1,0 +1,30 @@
+.Form {
+  padding: 5px;
+}
+
+.FormGroup {
+  padding-top: 10px;
+}
+
+.FormGroup label {
+  width: 150px;
+  font-size: 16px;
+  text-transform: uppercase;
+  display:inline-block;
+}
+
+.FormGroup input {
+  width: 60%;
+  border-radius: 2px;
+  height: 20px;
+}
+
+.FormGroup textarea {
+  width: 100%;
+  resize: none;
+  border-radius: 5px;
+}
+
+.FormSubmit {
+  margin-top: 10px;
+}
