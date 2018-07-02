@@ -3,6 +3,7 @@ import React from 'react';
 import Modal from './Modal';
 import Button from './Button';
 import RequestForm from './RequestForm';
+import ResponseBlock from './ResponseBlock';
 
 import style from './css/RequestMethod.css';
 
@@ -48,12 +49,35 @@ class RequestMethod extends React.Component {
 
     if (methodDetails && methodDetails.responses) {
       responseBody.push(
-        Object.keys(methodDetails.responses).map(key => (
-          <tr key={key}>
-            <td>{key}</td>
-            <td>desc</td>
-          </tr>
-        ))
+        Object.keys(methodDetails.responses).map(key => {
+          const response = methodDetails.responses[key];
+          let exampleResponse = <ResponseBlock response={{}} />;
+
+          if (response && response.examples) {
+            exampleResponse = (
+              <div>
+                <h3>Example Responses</h3>
+                {Object.keys(response.examples).map(exampleKey => {
+                  const example = response.examples[exampleKey];
+
+                  return (
+                    <div key={exampleKey}>
+                      <h4>{exampleKey}</h4>
+                      <ResponseBlock response={example} />
+                    </div>
+                  );
+                })}
+              </div>
+            );
+          }
+
+          return (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{exampleResponse}</td>
+            </tr>
+          );
+        })
       );
     }
 
