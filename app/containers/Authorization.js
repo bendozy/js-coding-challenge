@@ -36,7 +36,7 @@ class Authorization extends React.Component {
 
     return (
       <div className={style.Auth}>
-        {!authKey && (
+        {/* {!authKey && (
           <Button className={style.AuthButton} onClick={this.toggle}>
             Set Auth
           </Button>
@@ -48,7 +48,7 @@ class Authorization extends React.Component {
         )}
         <Modal title="Authorization" close={this.close} open={open}>
           <h4>Authorization goes here</h4>
-        </Modal>
+        </Modal> */}
       </div>
     );
   }
