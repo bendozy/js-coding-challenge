@@ -24,7 +24,7 @@ Using the boilerplate provided, create a chrome extension that processes a [Swag
 
 ## Instructions
 
-1. Create a Github repo, upload the attached folder, and invite me [https://github.com/ChrisNLott](https://github.com/ChrisNLott)
+1. Download repo
 2. `npm i` && `npm run start`
 3. Go to chrome://extensions/ and enable developer mode
 4. Click "Load unpacked extension", navigate to the directory of your extension and load the `dev` folder.
